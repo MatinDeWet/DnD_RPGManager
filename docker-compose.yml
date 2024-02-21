@@ -1,0 +1,23 @@
+version: '0.1'
+
+services: 
+    Database:
+        image: postgres:latest
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+        volumes:
+            - .container/postgres:/var/lib/postgresql/data
+    Seq:
+        image: datalust/seq:latest
+        restart: always
+        ports:
+            - 5341:80
+        environment:
+            ACCEPT_EULA: Y
+            SEQ_LICENSE: trial
+        volumes:
+            - .container/seq:/data
